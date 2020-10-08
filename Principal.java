@@ -10,13 +10,13 @@ public class Principal {
      */
     public static void main(String[] args) {
     	String cx[] = {"","A","B","C","D","E","F","G","H"};
-        ochoReinas reinas = new ochoReinas();
+        ochoReinas reinas= new ochoReinas();
         reinas.buscarSoluciones();
         ArrayList<?> soluciones = reinas.getSoluciones();
         Random aleatorio = new Random();
         int random = aleatorio.nextInt(soluciones.size());
         for (int i = 0; i < 1;i++){
-        	//Como hay 92 soluciones, genere un numero random para que no siempre muestre la misma solucion 
+        	//Como hay 92 soluciones, genere un numero random para que no siempre sea la misma
             int[] cy  = (int[]) soluciones.get(random);
             System.out.println("Juego No." + (random+1) + ":");
             for (int j = 0; j < cy.length;j++){
