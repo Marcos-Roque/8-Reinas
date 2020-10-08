@@ -14,7 +14,7 @@ public class ochoReinas {
         this.lineax = new boolean[numTablero];
         this.lineay = new boolean[numTablero];
         this.solucion = new int[numTablero];
-        for (int i = 0; i<numTablero;i++){
+        for (int i = 0; i < numTablero;i++){
             this.lineax [i] = true;
             this.lineay [i] = true;
             this.solucion [i] = -1;
@@ -28,6 +28,37 @@ public class ochoReinas {
         existeSolucion = false;
     }
 ////////////////////////////////////////////////*METODOS IMPLEMENTADOS*///////////////////////////////////// 
+    private  boolean sonParecidas (int[] x, int[] y){
+        int i = 0;
+        int j = 0;
+        boolean aux = true;        
+        while ((i < x.length) && (j < y.length)){
+            if(x[i] != y[j]){
+                return false;
+            }
+            i++;
+            j++;            
+        }
+        return aux;
+    }
+     
+    public ArrayList<int[]> getSoluciones(){
+        return this.soluciones;
+    }
+    private void agregarSolucion(){
+        soluciones.add(this.solucion);  
+    }
+    private boolean solucionNueva(int[] nuevaSolucion){
+        if (nuevaSolucion[0] == -1) return false;
+        boolean esNueva = true;
+        int i = 0;
+        while (i < soluciones.size() && esNueva){ 
+            int[] unaSol = (int[]) soluciones.get(i);
+            esNueva = !sonParecidas(unaSol,nuevaSolucion);
+            i++;
+        }
+        return esNueva;
+    }
     private void buscarSolucion(int fila){
         int colum = 0;
         while (colum < numTablero && !existeSolucion){
@@ -63,47 +94,15 @@ public class ochoReinas {
             buscarSolucion(0);
             if (solucionNueva(solucion)){
                 aux = true;
-                agregarSolucion();
+                agregarSolucion();   
             } else{
                 aux = false;
             }
             inicializarVariables();
         }
     }
-    public void buscarUnaSolucion(){
-        buscarSolucion(0);
-        agregarSolucion();
-    }
-    private void agregarSolucion(){
-        soluciones.add(this.solucion);  
-    }
-    private boolean solucionNueva(int[] nuevaSolucion){
-        if (nuevaSolucion[0] == -1) return false;
-        boolean esNueva = true;
-        int i = 0;
-        while (i < soluciones.size() && esNueva){ 
-            int[] unaSol = (int[]) soluciones.get(i);
-            esNueva = !sonParecidas(unaSol,nuevaSolucion);
-            i++;
-        }
-        return esNueva;
-    }
-    private  boolean sonParecidas (int[] x, int[] y){
-        int i = 0;
-        int j = 0;
-        boolean aux = true;        
-        while ((i < x.length) && (j < y.length)){
-            if(x[i] != y[j]){
-                return false;
-            }
-            i++;
-            j++;            
-        }
-        return aux;
-    }
-    public ArrayList<int[]> getSoluciones(){
-        return this.soluciones;
-    }
+    
+    
 //////////////////////////////////////////////*VARIABLES A UTILIZAR*////////////////////////////////////////////////////  
     private ArrayList<int[]> soluciones = new ArrayList<int[]>();
     private int numTablero; 
@@ -112,5 +111,6 @@ public class ochoReinas {
     private boolean[] lineay;
     private boolean[] diagonalS;
     private boolean[] diagonalI;
-    private boolean existeSolucion;   
+    private boolean existeSolucion;
+    
 }
