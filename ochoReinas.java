@@ -89,18 +89,18 @@ public class ochoReinas {
         }
         return esNueva;
     }
-    private  boolean sonParecidas (int[] a, int[] b){
+    private  boolean sonParecidas (int[] x, int[] y){
         int i = 0;
         int j = 0;
-        boolean flag = true;        
-        while ((i < a.length) && (j < b.length)){
-            if(a[i] != b[j]){
+        boolean aux = true;        
+        while ((i < x.length) && (j < y.length)){
+            if(x[i] != y[j]){
                 return false;
             }
             i++;
             j++;            
         }
-        return flag;
+        return aux;
     }
     public ArrayList<int[]> getSoluciones(){
         return this.soluciones;
