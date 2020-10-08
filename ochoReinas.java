@@ -58,15 +58,14 @@ public class ochoReinas {
         }
     }
     public void buscarSoluciones(){
-        boolean flag = true;
-        while(flag){
+        boolean aux = true;
+        while(aux){
             buscarSolucion(0);
             if (solucionNueva(solucion)){
-                flag = true;
+                aux = true;
                 agregarSolucion();
-                 
             } else{
-                flag = false;
+                aux = false;
             }
             inicializarVariables();
         }
